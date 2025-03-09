@@ -121,7 +121,7 @@ function getStatusCounts(todos) {
 function filterStatus() {
   const statusCounts = getStatusCounts(todos);
   console.log(statusCounts);
-  document.getElementById("complete").textContent  = `Complete: ${statusCounts.complete}`;
-  document.getElementById("incomplete").textContent  = `Incomplete ${statusCounts.incomplete}`;
-  document.getElementById("pending").textContent  = `Pending ${statusCounts.pending}`;
+  document.getElementById("complete").textContent  = `Complete [ ${statusCounts.complete} ]`;
+  document.getElementById("incomplete").textContent  = `Incomplete [ ${statusCounts.incomplete} ]`;
+  document.getElementById("pending").textContent  = `Pending [ ${statusCounts.pending} ]`;
 }
