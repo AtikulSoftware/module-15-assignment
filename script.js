@@ -39,8 +39,9 @@ function renderTodos() {
     listItem.classList.add(
       "flex",
       "flex-col",
-      "bg-gray-200",
-      "p-2",
+      "border-[1px]",
+      "border-gray-200",
+      "p-4",
       "rounded",
       "gap-1",
       "m-2"
