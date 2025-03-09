@@ -6,10 +6,10 @@ let todos = [
     status: "incomplete",
   },
 ];
-let editingIndex = -1;
 
 // initial render
 renderTodos();
+filterStatus();
 
 const closeModalBtn = document.getElementById("closeModalBtn");
 const modal = document.getElementById("modal");
@@ -56,6 +56,7 @@ function renderTodos() {
           `;
     list.appendChild(listItem);
   });
+  filterStatus();
 }
 
 function editTodo(index) {
@@ -69,7 +70,9 @@ function editTodo(index) {
 
   document.getElementById("update-btn").onclick = function () {
     const updatedName = document.getElementById("todo-name-update").value;
-    const updatedDescription = document.getElementById("todo-description-update").value;
+    const updatedDescription = document.getElementById(
+      "todo-description-update"
+    ).value;
     const updatedDate = document.getElementById("todo-date-update").value;
     const updatedStatus = document.getElementById("todo-status-update").value;
 
@@ -77,7 +80,7 @@ function editTodo(index) {
       name: updatedName,
       description: updatedDescription,
       date: updatedDate,
-      status: updatedStatus
+      status: updatedStatus,
     };
 
     renderTodos();
@@ -92,4 +95,32 @@ closeModalBtn.addEventListener("click", () => {
 function deleteTodo(index) {
   todos.splice(index, 1);
   renderTodos();
+}
+
+function getStatusCounts(todos) {
+  const statusCounts = {
+    incomplete: 0,
+    pending: 0,
+    complete: 0,
+  };
+
+  todos.forEach((todo) => {
+    if (todo.status === "incomplete") {
+      statusCounts.incomplete++;
+    } else if (todo.status === "pending") {
+      statusCounts.pending++;
+    } else if (todo.status === "complete") {
+      statusCounts.complete++;
+    }
+  });
+
+  return statusCounts;
+}
+
+function filterStatus() {
+  const statusCounts = getStatusCounts(todos);
+  console.log(statusCounts);
+  document.getElementById("complete").textContent  = `Complete: ${statusCounts.complete}`;
+  document.getElementById("incomplete").textContent  = `Incomplete ${statusCounts.incomplete}`;
+  document.getElementById("pending").textContent  = `Pending ${statusCounts.pending}`;
 }
